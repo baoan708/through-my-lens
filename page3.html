@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>The Memory</title>
+
+    <style>
+
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            font-family: Arial, sans-serif;
+
+            height: 100vh;
+            margin: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .photo {
+            width: 500px;
+            height: 600px;
+
+            background-color: white;
+
+            padding: 15px 15px 70px 15px;
+
+            display: flex;
+            flex-direction: column;
+
+            box-shadow: 0 0 40px rgba(255,255,255,0.15);
+        }
+
+
+        .image {
+            background-color: #222222;
+
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #777777;
+
+            font-size: 60px;
+        }
+        .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+        .caption {
+            color: black;
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            font-size: 18px;
+
+            letter-spacing: 2px;
+        }
+
+
+        .message {
+            margin-left: 80px;
+            width: 400px;
+        }
+
+
+        h1 {
+            font-size: 45px;
+            letter-spacing: 5px;
+        }
+
+
+        p {
+            color: #aaaaaa;
+
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+
+        a {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: white;
+            text-decoration: none;
+
+            border: 1px solid white;
+
+            padding: 12px 25px;
+
+            letter-spacing: 2px;
+        }
+
+
+        a:hover {
+            background-color: white;
+            color: black;
+        }
+.credit {
+    margin-top: 40px;
+    font-size: 11px;
+    line-height: 2;
+    letter-spacing: 4px;
+    color: #666666;
+}
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="photo">
+
+      <div class="image">
+    <img src="photo.jpg" alt="My photograph">
+</div>
+
+        <div class="caption">
+            A MOMENT IN TIME
+        </div>
+
+    </div>
+
+
+    <div class="message">
+
+        <h1>THE MEMORY</h1>
+
+      <p id="final-caption">
+    A moment disappears.<br>
+    A photograph doesn't.
+</p>
+<p class="credit">
+    THROUGH MY LENS<br>
+    KEAN VO
+</p>
+        <a href="index.html">
+            SHOOT AGAIN
+        </a>
+
+    </div>
+
+<script>
+    let selectedPhoto = localStorage.getItem("selectedPhoto");
+    let selectedCaption = localStorage.getItem("selectedCaption");
+
+    if (selectedPhoto) {
+        document.querySelector(".image img").src = selectedPhoto;
+    }
+
+    if (selectedCaption) {
+        document.getElementById("final-caption").innerText = selectedCaption;
+    }
+</script>
+</body>
+
+</html>

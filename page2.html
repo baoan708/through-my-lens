@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Find Your Shot</title>
+
+    <style>
+
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            font-family: Arial, sans-serif;
+
+            height: 100vh;
+            margin: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .viewfinder {
+            width: 70%;
+            height: 70%;
+
+            border: 2px solid white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+        }
+
+
+        h1 {
+            font-size: 40px;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+        }
+
+
+        p {
+            color: #aaaaaa;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+
+        a {
+            color: white;
+            text-decoration: none;
+
+            border: 1px solid white;
+            padding: 12px 30px;
+
+            letter-spacing: 3px;
+        }
+
+
+        a:hover {
+            background-color: white;
+            color: black;
+        }
+
+
+       .focus {
+    position: absolute;
+    top: 35%;
+    font-size: 40px;
+}
+
+
+        .rec {
+            position: absolute;
+            top: 20px;
+            left: 25px;
+
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+
+        .settings {
+            position: absolute;
+            bottom: 20px;
+            right: 25px;
+
+            font-size: 14px;
+            color: #aaaaaa;
+        }
+
+
+        .corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+
+
+        .top-left {
+            top: 20px;
+            left: 20px;
+
+            border-top: 3px solid white;
+            border-left: 3px solid white;
+        }
+
+
+        .top-right {
+            top: 20px;
+            right: 20px;
+
+            border-top: 3px solid white;
+            border-right: 3px solid white;
+        }
+
+
+        .bottom-left {
+            bottom: 20px;
+            left: 20px;
+
+            border-bottom: 3px solid white;
+            border-left: 3px solid white;
+        }
+
+
+        .bottom-right {
+            bottom: 20px;
+            right: 20px;
+
+            border-bottom: 3px solid white;
+            border-right: 3px solid white;
+        }
+#flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: white;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 0.1s;
+}
+.shots {
+    display: flex;
+    gap: 25px;
+    margin: 20px 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.shots img {
+    max-width: 320px;
+    max-height: 230px;
+    width: auto;
+    height: auto;
+
+    border: 2px solid #555555;
+}
+.shots img {
+    cursor: pointer;
+    opacity: 0.65;
+    transition: 0.2s;
+}
+
+.shots img:hover {
+    opacity: 1;
+}
+
+.shots img.selected {
+    opacity: 1;
+    border: 3px solid white;
+}
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="viewfinder">
+
+        <div class="rec">● REC</div>
+
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+
+
+        <h1>FIND YOUR SHOT</h1>
+<div class="shots">
+
+    <img src="photo.jpg" alt="Shot 1" onclick="selectShot(this, 'photo.jpg')">
+
+    <img src="photo2.jpg" alt="Shot 2" onclick="selectShot(this, 'photo2.jpg')">
+
+</div>
+<p id="shot-description">Choose a moment.</p>
+       
+
+        <a href="#" onclick="takePhoto()">CAPTURE</a>
+
+        <div class="settings">
+            ISO 400 &nbsp;&nbsp; F2.8 &nbsp;&nbsp; 1/60
+        </div>
+
+    </div>
+<div id="flash"></div>
+
+<script>
+    function selectShot(image, photoName) {
+    let allPhotos = document.querySelectorAll(".shots img");
+
+    allPhotos.forEach(function(photo) {
+        photo.classList.remove("selected");
+    });
+
+    image.classList.add("selected");
+
+    selectedPhoto = photoName;
+
+    if (photoName === "photo.jpg") {
+        document.getElementById("shot-description").innerText =
+            "Before the city wakes.";
+    }
+
+    if (photoName === "photo2.jpg") {
+        document.getElementById("shot-description").innerText =
+            "After the city lights up.";
+    }
+}
+
+
+    function takePhoto() {
+        localStorage.setItem("selectedPhoto", selectedPhoto);
+        if (selectedPhoto === "photo.jpg") {
+    localStorage.setItem("selectedCaption", "Before the city wakes.");
+}
+
+if (selectedPhoto === "photo2.jpg") {
+    localStorage.setItem("selectedCaption", "After the city lights up.");
+}
+
+        document.getElementById("flash").style.opacity = "1";
+
+        setTimeout(function() {
+            window.location.href = "page3.html";
+        }, 300);
+    }
+</script>
+</body>
+
+</html>
